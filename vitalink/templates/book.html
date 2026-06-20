@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VitaLink · Book Appointment</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Page-specific styles (standalone patient-facing page, no sidebar) -->
+  <link rel="stylesheet" href="/static/Css/book.css">
+</head>
+<body>
+
+
+<div class="header">
+  <div>
+    <div class="header-logo">Vita<span>Link</span></div>
+    <div class="header-sub">CareSync · Innovations</div>
+  </div>
+  <a href="/" class="back-link">
+    <i data-lucide="arrow-left"></i>
+    Back to Clinic Portal
+  </a>
+</div>
+
+<div class="hero">
+  <h1>Book Your Health Appointment</h1>
+  <p>Choose a date and time that works for you. VitaLink allocates the clinic nearest to your home saving you travel time and transport costs.</p>
+  <div class="privacy-badge">
+    <i data-lucide="shield-check"></i>
+    Your appointment details are completely private
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="steps">
+    <div class="step active" id="s1"><div class="step-num">1</div>Your Details</div>
+    <div class="step-line" id="l1"></div>
+    <div class="step" id="s2"><div class="step-num">2</div>Choose Clinic & Date</div>
+    <div class="step-line" id="l2"></div>
+    <div class="step" id="s3"><div class="step-num">3</div>Confirm</div>
+  </div>
+
+  <div id="step-details">
+    <div class="card">
+      <div class="card-title">
+        <i data-lucide="user-round"></i>
+        Your Details
+      </div>
+      <div class="card-sub">We only need the basics to find you the right clinic and send a discreet reminder.</div>
+
+      <div class="discreet-notice">
+        <strong>
+          <i data-lucide="lock-keyhole"></i>
+          Your privacy is protected
+        </strong>
+        Your reminder message will say "health appointment" only no condition name, no medication details. If someone else sees your phone, your privacy is safe.
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label><i data-lucide="id-card"></i>Full Name *</label>
+          <input type="text" id="b-name" placeholder="e.g. Nomsa Dlamini">
+        </div>
+        <div class="field">
+          <label><i data-lucide="phone"></i>Phone Number *</label>
+          <input type="text" id="b-phone" placeholder="e.g. 0721234567">
+        </div>
+      </div>
+      <div class="field">
+        <label><i data-lucide="map-pin"></i>Area of residence *</label>
+        <select id="b-area" onchange="detectArea()">
+          <option value="">Select your area...</option>
+          <option value="Soshanguve">Soshanguve</option>
+          <option value="Ga-Rankuwa">Ga-Rankuwa</option>
+          <option value="Mabopane">Mabopane</option>
+          <option value="Atteridgeville">Atteridgeville</option>
+          <option value="Mamelodi">Mamelodi</option>
+          <option value="Temba">Temba</option>
+        </select>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px">VitaLink uses this to find the clinic closest to your home reducing your travel time and costs.</div>
+      </div>
+      <div class="field">
+        <label><i data-lucide="stethoscope"></i>Appointment Type *</label>
+        <select id="b-type">
+          <option value="">Select...</option>
+          <option value="Chronic Care">Chronic medication collection</option>
+          <option value="ARV Collection">ARV collection</option>
+          <option value="TB Review">TB review</option>
+          <option value="GP Consultation">General consultation</option>
+          <option value="Lab Results">Lab results</option>
+          <option value="New Patient">New patient assessment</option>
+        </select>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px">This helps the clinic prepare before you arrive reducing your waiting time.</div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="goToStep2()">
+          <span>Find Available Slots</span>
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="step-slots" style="display:none">
+    <div class="card">
+      <div class="card-title">
+        <i data-lucide="hospital"></i>
+        Nearest Clinics to You
+      </div>
+      <div class="card-sub" id="clinic-sub">Based on your area, these are your closest clinics.</div>
+      <div class="clinic-grid" id="clinic-grid">Loading...</div>
+    </div>
+
+    <div class="card" id="date-card" style="display:none">
+      <div class="card-title">
+        <i data-lucide="calendar-days"></i>
+        Choose Your Date & Time
+      </div>
+      <div class="card-sub">Pick a date and time that is convenient for you. Saturday morning clinics are available.</div>
+      <div class="date-tabs" id="date-tabs"></div>
+      <div id="time-area"><div class="no-slots">Select a date above to see available times.</div></div>
+      <div class="btn-row" style="margin-top:20px">
+        <button class="btn btn-secondary" onclick="goToStep1()">
+          <i data-lucide="arrow-left"></i>
+          <span>Back</span>
+        </button>
+        <button class="btn btn-primary" id="btn-next2" onclick="goToStep3()" disabled>
+          <span>Review Booking</span>
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="step-confirm">
+    <div class="card">
+      <div class="card-title">
+        <i data-lucide="clipboard-check"></i>
+        Review Your Booking
+      </div>
+      <div class="card-sub">Please confirm your details before we book your appointment.</div>
+
+      <div class="confirm-box">
+        <div class="confirm-row"><span>Name</span><span id="conf-name">—</span></div>
+        <div class="confirm-row"><span>Clinic</span><span id="conf-clinic">—</span></div>
+        <div class="confirm-row"><span>Date</span><span id="conf-date">—</span></div>
+        <div class="confirm-row"><span>Time</span><span id="conf-time">—</span></div>
+        <div class="confirm-row"><span>Appointment</span><span id="conf-type">—</span></div>
+      </div>
+
+      <div class="discreet-notice">
+        <strong>
+          <i data-lucide="smartphone"></i>
+          Your reminder message will look like this:
+        </strong>
+        <div class="msg-preview">
+          <strong>WhatsApp / SMS Preview</strong>
+          <span id="msg-preview-text">Loading...</span>
+        </div>
+        No condition name or medication is mentioned. Your privacy is protected.
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goToStep2()">
+          <i data-lucide="square-pen"></i>
+          <span>Edit Booking</span>
+        </button>
+        <button class="btn btn-primary" onclick="confirmBooking()">
+          <i data-lucide="check"></i>
+          <span>Confirm Appointment</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="success-card" id="success-card">
+    <div class="success-icon">
+      <i data-lucide="badge-check"></i>
+    </div>
+    <h2>Appointment Confirmed!</h2>
+    <p>Your appointment has been booked. A discreet reminder will be sent to your phone 24 hours before your visit.</p>
+    <div class="booking-ref" id="success-ref">—</div>
+    <div class="success-msg">
+      <strong>Your reminder message</strong>
+      <span id="success-msg-text">—</span>
+    </div>
+    <div class="btn-row" style="justify-content:center;">
+      <button class="success-btn" onclick="location.href='/book'">Book Another</button>
+      <button class="success-btn" onclick="location.href='/'">Back to Clinic Portal</button>
+    </div>
+  </div>
+
+</div>
+  <!-- Page-specific logic -->
+  <script src="/static/Scripts/book.js"></script>
+</body>
+</html>

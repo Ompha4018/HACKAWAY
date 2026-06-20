@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VitaLink · QuickScript Pharmacy</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+
+
+  <!-- Shared sidebar styles -->
+  <link rel="stylesheet" href="/static/Css/VitaLinkSidebar.css">
+  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="/static/Css/pharmacy.css">
+</head>
+
+<body>
+
+  <!-- Sidebar injected here by VitaLinkSidebar.js -->
+  <div id="vitalink-sidebar-target"></div>
+
+
+<!-- SIDEBAR -->
+
+
+
+
+
+<div class="main">
+
+  <div class="topbar">
+
+    <div><h1>QuickScript Pharmacy Fulfillment</h1><p>48 hour pre-packing · QR fast-track dispensing</p></div>
+
+    <a href="/" style="font-size:13px;color:var(--green);text-decoration:none;font-weight:600">← Registry</a>
+
+  </div>
+
+  <div class="content">
+
+    <div class="pharma-header">
+
+      <h2 class="pill-title"><i data-lucide="pill"></i><span>Pharmacy</span></h2>
+
+      <p>Prepare medication before collection for faster pickup.</p>
+
+      <div class="time-badge"><i data-lucide="clock-3"></i> Average wait <strong>8 min</strong></div>
+
+    </div>
+
+
+
+    <div class="stats-row" id="stats-row">
+
+      <div class="stat-card"><div class="stat-label">Due Soon</div><div class="stat-value" style="color:var(--red)" id="stat-urgent">—</div><div class="stat-sub">Collections in next 48 hours</div></div>
+
+      <div class="stat-card"><div class="stat-label">Ready</div><div class="stat-value" style="color:var(--green)" id="stat-ready">—</div><div class="stat-sub">Waiting for pickup</div></div>
+
+      <div class="stat-card"><div class="stat-label">Preparing</div><div class="stat-value" style="color:var(--gold)" id="stat-pending">—</div><div class="stat-sub">Needs action</div></div>
+
+    </div>
+
+
+
+    <!-- QR SCANNER -->
+
+    <div class="scanner-section">
+
+      <div class="scanner-title"><i data-lucide="scan-line"></i> Scan Patient QR</div>
+
+      <div class="scanner-area">
+
+        <div class="qr-input-wrap">
+
+          <label>Patient QR</label>
+
+          <input class="qr-input" id="qr-input" type="text" placeholder="VTL-AB-0001-XXXX" maxlength="20">
+
+          <button class="scan-btn" onclick="scanQR()"><i data-lucide="scan-search"></i> Verify</button>
+
+        </div>
+
+        <div class="scan-result" id="scan-result">
+
+          <div class="result-name" id="result-name">—</div>
+
+          <div class="result-med" id="result-med">—</div>
+
+          <div style="font-size:12px;margin-bottom:12px" id="result-details">—</div>
+
+          <button class="dispense-btn" id="dispense-btn" onclick="confirmDispense()"><i data-lucide="badge-check"></i> Dispense</button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- QUEUE -->
+
+    <div class="table-card">
+
+      <div class="filters">
+<button class="filter-btn active" onclick="filterQueue('all',this)">All</button>
+<button class="filter-btn" onclick="filterQueue('ready',this)">Ready</button>
+<button class="filter-btn" onclick="filterQueue('pending',this)">Preparing</button>
+<button class="filter-btn" onclick="filterQueue('today',this)">Due Today</button>
+</div>
+<div class="table-header-bar">
+
+        <span class="table-title">Upcoming Collections</span>
+
+        <span style="font-size:12px;color:var(--muted)" id="queue-count">Loading...</span>
+
+      </div>
+
+      <div id="queue-body"><div class="loading"><div class="spinner"></div>Loading pharmacy queue...</div></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+  <!-- Shared sidebar logic -->
+  <script src="/static/Scripts/VitaLinkSidebar.js"></script>
+  <!-- Page-specific logic -->
+  <script src="/static/Scripts/pharmacy.js"></script>
+</body>
+
+</html>
+
+"

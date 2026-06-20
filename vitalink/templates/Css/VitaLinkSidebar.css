@@ -1,0 +1,235 @@
+/* sidebar.css */
+:root {
+  --green: #1A7A4A;
+  --dark-green: #0F5233;
+  --light-green: #E8F5EE;
+  --teal: #0D7E8C;
+  --light-teal: #E3F4F6;
+  --gold: #C07F2A;
+  --light-gold: #FDF4E3;
+  --red: #C0392B;
+  --light-red: #FEF0EE;
+  --purple: #6B4FBB;
+  --light-purple: #F0ECFF;
+  --bg: #F4F6F4;
+  --surface: #FFFFFF;
+  --border: #E0E8E4;
+  --text: #1C2B22;
+  --muted: #6B7F73;
+  --sidebar-w: 260px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* SIDEBAR RESTRUCTURING WITH DRAWER ACTIONS */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--dark-green);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Collapsed State Class */
+body.sidebar-collapsed .sidebar {
+  transform: translateX(-100%);
+}
+
+.logo {
+  padding: 24px 24px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-mark {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.logo-mark span {
+  color: #6EDBA8;
+}
+
+.logo-sub {
+  font-size: 10px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* COLLAPSE TRIGGER BUTTONS */
+.sidebar-toggle-btn {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.6);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-toggle-btn:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+/* Floating Action Menu Button (Only appears when layout is collapsed) */
+.floating-menu-trigger {
+  position: fixed;
+  left: 20px;
+  top: 15px;
+  z-index: 90;
+  background: var(--dark-green);
+  color: #fff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: transform 0.2s;
+}
+
+body.sidebar-collapsed .floating-menu-trigger {
+  display: flex;
+}
+
+.nav {
+  padding: 16px 12px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.nav-section {
+  font-size: 9px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 14px 12px 6px;
+  font-weight: 700;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  margin-bottom: 3px;
+  transition: all .2s;
+}
+
+.nav-item:hover {
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+}
+
+.nav-item.active {
+  background: var(--green);
+  color: #fff;
+}
+
+.sidebar-footer {
+  padding: 16px 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  background: rgba(0,0,0,0.15);
+}
+
+.sidebar-footer strong {
+  display: block;
+  color: rgba(255,255,255,0.85);
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+/* MAIN WORKSPACE WRAPPER */
+.main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  transition: margin-left 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+body.sidebar-collapsed .main {
+  margin-left: 0;
+}
+
+.topbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: padding-left 0.3s;
+}
+
+/* Give topbar content spacing padding if structural floating trigger appears */
+body.sidebar-collapsed .topbar {
+  padding-left: 80px;
+}
+
+.topbar h1 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.topbar p {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.content {
+  padding: 32px;
+  flex: 1;
+}
+
+.sidebar i, .topbar i {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2.25;
+  display: inline-block;
+  flex-shrink: 0;
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VitaLink · EHR Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Shared sidebar styles -->
+  <link rel="stylesheet" href="/static/Css/VitaLinkSidebar.css">
+  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="/static/Css/index.css">
+</head>
+<body>
+
+  <!-- Sidebar injected here by VitaLinkSidebar.js -->
+  <div id="vitalink-sidebar-target"></div>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <h1>Patient Registry</h1>
+        <p id="today-date">Loading...</p>
+      </div>
+      <div class="topbar-right">
+        <span class="clinic-badge">
+          <i data-lucide="building-2" class="badge-icon"></i>
+          <span>Tshwane District</span>
+        </span>
+        <div class="avatar">SN</div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="alert-banner" id="alert-banner">
+        <span style="font-size:18px; display:flex; align-items:center;"><i data-lucide="alert-triangle"></i></span>
+        <div>
+          <strong id="alert-text">Loading Alerts...</strong>
+          <span style="font-size:11px; opacity:.85; display:block; margin-top:1px;">Immediate CHW dispatch and WhatsApp engagement recommended</span>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card s-total">
+          <div class="stat-label">Total Enrolled</div>
+          <div class="stat-value" style="color:var(--teal)" id="s-total">—</div>
+          <div class="stat-sub">Chronic patients in VitaLink</div>
+        </div>
+        <div class="stat-card s-crit">
+          <div class="stat-label"><span class="pulse-dot"></span>Critical Risk</div>
+          <div class="stat-value" style="color:var(--red)" id="s-crit">—</div>
+          <div class="stat-sub">DRS &ge; 75 · Act now</div>
+        </div>
+        <div class="stat-card s-high">
+          <div class="stat-label">High Risk</div>
+          <div class="stat-value" style="color:var(--gold)" id="s-high">—</div>
+          <div class="stat-sub">DRS 65–74 · Alert active</div>
+        </div>
+        <div class="stat-card s-ok">
+          <div class="stat-label">WhatsApp Alerted</div>
+          <div class="stat-value" style="color:var(--green)" id="s-alerted">—</div>
+          <div class="stat-sub">Discreet messages sent</div>
+        </div>
+        <div class="stat-card s-book">
+          <div class="stat-label">Insulin Patients</div>
+          <div class="stat-value" style="color:var(--teal)" id="s-insulin">—</div>
+          <div class="stat-sub">QuickScript eligible</div>
+        </div>
+      </div>
+
+      <div class="main-grid">
+        <div>
+          <div class="filter-bar">
+            <div class="search-wrap">
+              <span class="search-icon"><i data-lucide="search"></i></span>
+              <input type="text" id="search" placeholder="Search name, condition, clinic, area...">
+            </div>
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="CRITICAL">Critical</button>
+            <button class="filter-btn" data-filter="HIGH">High Risk</button>
+            <button class="filter-btn" data-filter="MEDIUM">Medium</button>
+            <button class="filter-btn" data-filter="LOW">Low</button>
+          </div>
+          <div class="table-card">
+            <div class="table-head-bar">
+              <span class="table-title">Chronic Disease Registry</span>
+              <span style="font-size:11px; color:var(--muted)" id="table-count">Loading...</span>
+            </div>
+            <div id="table-body">
+              <div class="loading"><div class="spinner"></div>Loading Engine Registry Elements...</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-panel">
+          <div class="act-card">
+            <div class="act-head">
+              <span class="act-title"><i data-lucide="activity"></i>Patient Portal Activity</span>
+              <span style="font-size:10px; color:var(--muted)" id="act-count">0 events</span>
+            </div>
+            <div class="act-body" id="activity-feed">
+              <div class="act-empty">No portal activity yet.<br>Bookings and check-ins will appear here.</div>
+            </div>
+          </div>
+
+          <div class="portal-card">
+            <h4 class="portal-title"><i data-lucide="link-2"></i>Patient Tools</h4>
+            <p>These tools are used directly by patients. All activity is tracked here in VitaLink.</p>
+            <div class="portal-links">
+              <a class="portal-link" href="/book"><i data-lucide="calendar"></i>Appointment Booking Portal</a>
+              <a class="portal-link" href="/checkin"><i data-lucide="stethoscope"></i>Symptom Check-In</a>
+            </div>
+          </div>
+
+          <div class="act-card">
+            <div class="act-head">
+              <span class="act-title"><i data-lucide="compass"></i>SVS Core Metrics</span>
+            </div>
+            <div class="act-body" style="padding:14px">
+              <p style="font-size:12px; line-height:1.7; color:var(--muted)">
+                The <strong style="color:var(--text)">Social Vulnerability Score</strong> measures risk factors outside the clinic: unemployment, transport difficulty, food insecurity, distance. A patient can have a <strong style="color:var(--green)">low DRS</strong> (clinically stable) but a <strong style="color:var(--red)">high SVS</strong> (socially at risk).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared sidebar logic -->
+  <script src="/static/Scripts/VitaLinkSidebar.js"></script>
+  <!-- Page-specific logic -->
+  <script src="/static/Scripts/index.js"></script>
+</body>
+</html>

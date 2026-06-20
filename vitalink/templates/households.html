@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VitaLink · CHW Command & Household Risk Center</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Shared sidebar styles -->
+  <link rel="stylesheet" href="/static/Css/VitaLinkSidebar.css">
+  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="/static/Css/households.css">
+</head>
+<body>
+
+  <!-- Sidebar injected here by VitaLinkSidebar.js -->
+  <div id="vitalink-sidebar-target"></div>
+
+
+
+
+<div class="main">
+  <div class="topbar">
+    <div>
+      <h1>CHW Field Command Center</h1>
+      <p>Operational triage dashboard & household contact risk mapping</p>
+    </div>
+    <div style="font-size:12px; font-weight:600; background:var(--light-green); color:var(--dark-green); padding:6px 12px; border-radius:6px;">
+      ● Dispatch Mode Active
+    </div>
+  </div>
+  
+  <div class="content">
+    <div class="alert-banner">
+      <div class="alert-info">
+        <h2><i data-lucide="shield-alert"></i>Active Community Spread Risk</h2>
+        <p>High contact danger flags triggered due to multi-enclosure medication treatment defaults in Soshanguve North.</p>
+      </div>
+      <div class="alert-pills">
+        <div class="alert-pill" style="color:#FFD580;"><i data-lucide="alert-triangle"></i><span>2 TB Contact Risks</span></div>
+        <div class="alert-pill"><i data-lucide="ユーザー"></i><span>1 High Default Hazard</span></div>
+      </div>
+    </div>
+
+    <div class="operations-grid">
+      
+      <div class="queue-panel">
+        <div class="panel-header">
+          <div class="panel-title"><i data-lucide="list-ordered"></i> Ranked High-Risk Household Queue</div>
+          <span style="font-size:12px; color:var(--muted);" id="queue-count-lbl">Loading registry...</span>
+        </div>
+        
+        <div id="dynamic-action-queue-target" style="display:flex; flex-direction:column; gap:12px;">
+          </div>
+      </div>
+
+      <div class="interactive-map-panel">
+        <div style="padding:12px 16px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; background:#FAFBFA;">
+          <span style="font-size:11.5px; font-weight:700; text-transform:uppercase; color:var(--muted); letter-spacing:0.5px;">
+            <i data-lucide="network" style="margin-right:4px;"></i>Household Contacts Map
+          </span>
+          <span style="font-size:11px; color:var(--muted)">Drag to view connections</span>
+        </div>
+        
+        <canvas id="graph-canvas"></canvas>
+
+        <div class="hud-inspector-content" id="hud-injector-target">
+          <div class="hud-title-block">
+            <div class="hud-main-heading"><i data-lucide="info"></i> Selection Blueprint</div>
+            <div class="hud-sub-heading">Select a household node or action card to inject dispatch steps.</div>
+          </div>
+          <div style="text-align:center; padding:30px 10px; color:var(--muted); font-size:13px; border:1px dashed var(--border); border-radius:8px;">
+            Select a household from the priority queue to examine transmission contacts and assign field workflows instantly.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+  <!-- Shared sidebar logic -->
+  <script src="/static/Scripts/VitaLinkSidebar.js"></script>
+  <!-- Page-specific logic -->
+  <script src="/static/Scripts/households.js"></script>
+</body>
+</html>

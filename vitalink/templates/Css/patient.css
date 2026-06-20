@@ -1,0 +1,128 @@
+/* patient.css — patient page styles */
+
+:root {
+    --green:#1A7A4A; --dark-green:#0F5233; --light-green:#E8F5EE;
+    --teal:#0D7E8C; --light-teal:#E3F4F6;
+    --gold:#C07F2A; --light-gold:#FDF4E3;
+    --red:#C0392B; --light-red:#FEF0EE;
+    --bg:#F4F6F4; --surface:#FFFFFF; --border:#E0E8E4;
+    --text:#1C2B22; --muted:#6B7F73; --sidebar-w:260px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; display:flex; }
+
+  /* Sidebar, logo, nav, .main and .topbar shell now come from the shared
+     VitaLinkSidebar.css component — do not redefine them here. */
+  .back-btn { display:flex; align-items:center; gap:8px; color:var(--green); text-decoration:none; font-size:13px; font-weight:600; }
+  .back-btn:hover { color:var(--dark-green); }
+
+  .content { padding:28px 32px; }
+
+  /* PATIENT HEADER */
+  .patient-header {
+    background:var(--surface); border:1px solid var(--border); border-radius:12px;
+    padding:24px; margin-bottom:24px; display:flex; align-items:center; gap:24px;
+  }
+  .patient-avatar {
+    width:72px; height:72px; border-radius:50%; display:flex; align-items:center;
+    justify-content:center; font-size:24px; font-weight:700; color:#fff; flex-shrink:0;
+  }
+  .patient-info { flex:1; }
+  .patient-info h2 { font-size:22px; font-weight:700; }
+  .patient-info .pid { font-size:12px; color:var(--muted); font-family:'DM Mono',monospace; margin-top:2px; }
+  .patient-meta { display:flex; flex-wrap:wrap; gap:16px; margin-top:12px; }
+  
+  /* CRITICAL ALIGNMENT RULES FOR METADATA TAGS */
+  .meta-tag { font-size:12px; color:var(--muted); display:inline-flex; align-items:center; gap:6px; line-height:1; }
+  .meta-tag svg, .meta-tag i { width:14px; height:14px; stroke-width:2; color:var(--green); flex-shrink:0; }
+  .meta-tag strong { color:var(--text); font-weight:600; }
+
+  .drs-panel {
+    text-align:center; background:var(--bg); border-radius:10px;
+    padding:16px 24px; min-width:160px;
+  }
+  .drs-label { font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); font-weight:700; margin-bottom:8px; }
+  .drs-circle {
+    width:80px; height:80px; border-radius:50%; margin:0 auto 8px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    border:4px solid;
+  }
+  .drs-number { font-family:'DM Mono',monospace; font-size:22px; font-weight:700; line-height:1; }
+  .drs-max { font-size:10px; color:var(--muted); }
+  .risk-chip { padding:4px 14px; border-radius:20px; font-size:12px; font-weight:700; display:inline-block; margin-top:4px; }
+
+  /* GRID COMPONENTS */
+  .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; margin-bottom:20px; }
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+  
+  /* FIXED UNIFIED HEADER WRAPPER CONSTRAINTS */
+  .card-head { padding:14px 18px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+  .card-title { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; display:inline-flex; align-items:center; gap:8px; }
+  .card-title svg, .card-title i { width:16px; height:16px; stroke-width:2; color:var(--green); flex-shrink:0; }
+  .card-body { padding:18px; }
+
+  /* APPOINTMENTS ELEMENTS */
+  .appt-item { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid #F0F4F2; }
+  .appt-item:last-child { border-bottom:none; }
+  .appt-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .appt-dot.attended { background:var(--green); }
+  .appt-dot.missed { background:var(--red); }
+  .appt-dot.upcoming { background:var(--teal); }
+  .appt-info { flex:1; }
+  .appt-type { font-size:13px; font-weight:600; }
+  .appt-date { font-size:11px; color:var(--muted); }
+  .appt-status { font-size:11px; font-weight:700; }
+  .status-attended { color:var(--green); }
+  .status-missed { color:var(--red); }
+  .status-upcoming { color:var(--teal); }
+
+  /* MEDICATIONS CONFIGURATION */
+  .med-item { padding:12px 0; border-bottom:1px solid #F0F4F2; }
+  .med-item:last-child { border-bottom:none; }
+  .med-name { font-size:13.5px; font-weight:600; display:inline-flex; align-items:center; gap:6px; }
+  .med-name svg, .med-name i { width:15px; height:15px; color:var(--green); }
+  .med-dose { font-size:12px; color:var(--muted); margin-top:2px; padding-left:21px; }
+  
+  .med-collect { font-size:11px; margin-top:6px; padding-left:21px; display:inline-flex; align-items:center; flex-wrap:wrap; gap:4px; }
+  .med-collect svg, .med-collect i { width:13px; height:13px; color:var(--muted); }
+  .med-status-tag { display:inline-flex; align-items:center; gap:3px; font-weight:600; }
+  .med-status-tag svg, .med-status-tag i { width:13px; height:13px; }
+  
+  .qr-code { font-family:'DM Mono',monospace; background:var(--bg); padding:4px 8px; border-radius:4px; font-size:11px; margin-top:6px; margin-left:21px; display:inline-flex; align-items:center; gap:6px; }
+  .qr-code svg, .qr-code i { width:13px; height:13px; color:var(--muted); }
+
+  /* LAB SYSTEM STYLES */
+  .lab-item { display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px solid #F0F4F2; }
+  .lab-item:last-child { border-bottom:none; }
+  .lab-name { font-size:13px; font-weight:600; }
+  .lab-date { font-size:11px; color:var(--muted); }
+  .lab-result { font-size:13px; font-family:'DM Mono',monospace; text-align:right; }
+  .lab-trend { font-size:10px; font-weight:700; padding:2px 8px; border-radius:10px; margin-top:2px; display:inline-block; }
+  .trend-Worsening { background:var(--light-red); color:var(--red); }
+  .trend-Stable { background:#FFF8E1; color:#7A6000; }
+  .trend-Improving { background:var(--light-green); color:var(--dark-green); }
+
+  /* TEXT BOX WRAPPER */
+  .notes-box { background:var(--bg); border-radius:8px; padding:14px; font-size:13px; line-height:1.6; color:var(--text); }
+
+  /* BUTTON ACTIONS BLOCK BAR SYSTEM */
+  .action-row { display:flex; gap:12px; margin-top:20px; align-items:center; }
+  .btn { padding:11px 20px; border-radius:8px; border:none; cursor:pointer; font-family:'DM Sans',sans-serif; font-size:13.5px; font-weight:600; transition:all .2s; display:inline-flex; align-items:center; gap:8px; justify-content:center; line-height:1; }
+  .btn svg, .btn i { width:16px; height:16px; stroke-width:2; flex-shrink:0; display:block; }
+  .btn-primary { background:var(--green); color:#fff; }
+  .btn-primary:hover { background:var(--dark-green); }
+  .btn-secondary { background:var(--surface); color:var(--text); border:1px solid var(--border); }
+  .btn-secondary:hover { background:var(--bg); }
+  
+  /* UNIFIED MODERN WHATSAPP ICON STYLE SYSTEM */
+  .btn-alert { background:#1EBEA5; color:#fff; }
+  .btn-alert:hover { background:#1AA38E; }
+  .btn-alert.sent { background:var(--light-green); color:var(--dark-green); cursor:default; border:1px solid var(--border); }
+  .btn-alert svg.wa-icon { fill:currentColor; stroke:none; width:16px; height:16px; }
+
+  .loading { text-align:center; padding:60px; color:var(--muted); }
+  .spinner { width:32px; height:32px; border:3px solid var(--border); border-top-color:var(--green); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 12px; }
+  @keyframes spin { to{transform:rotate(360deg)} }
+  
+  .back-btn i { width: 18px; height: 18px; }

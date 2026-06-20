@@ -1,0 +1,122 @@
+/* checkin.css — checkin page styles */
+
+:root{--green:#1A7A4A;--dark-green:#0F5233;--light-green:#E8F5EE;--teal:#0D7E8C;--light-teal:#E3F4F6;--gold:#C07F2A;--light-gold:#FDF4E3;--red:#C0392B;--light-red:#FEF0EE;--bg:#F4F6F4;--surface:#FFFFFF;--border:#E0E8E4;--text:#1C2B22;--muted:#6B7F73;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;scroll-behavior:smooth;}
+  
+  .header{background:var(--dark-green);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;}
+  .header-logo{font-family:'Fraunces',serif;font-size:22px;color:#fff;}
+  .header-logo span{color:#6EDBA8;}
+  .back-link{color:rgba(255,255,255,.7);text-decoration:none;font-size:13px;display:inline-flex;align-items:center;gap:8px;}
+  
+  .content{flex:1;max-width:600px;margin:0 auto;padding:40px 20px;width:100%;}
+
+  .greeting{text-align:center;margin-bottom:36px;}
+  .greeting h1{font-size:26px;font-weight:700;margin-bottom:8px;}
+  .greeting p{color:var(--muted);font-size:14px;line-height:1.6;}
+
+  /* CARDS WITH SCALE & FADE TRANSITIONS */
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:24px;animation:cardPop .3s cubic-bezier(0.16, 1, 0.3, 1) forwards;}
+  @keyframes cardPop{
+    from{opacity:0;transform:scale(0.97) translateY(8px);}
+    to{opacity:1;transform:scale(1) translateY(0);}
+  }
+  
+  .card h3{font-size:15px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .lookup-row{display:flex;gap:10px;}
+  .lookup-input{flex:1;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border .2s;}
+  .lookup-input:focus{border-color:var(--green);}
+  
+  /* ACTION LAYER */
+  .btn-row{display:flex;gap:12px;margin-top:8px;}
+  .btn{padding:12px 24px;border-radius:8px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:8px;}
+  .btn-primary{background:var(--green);color:#fff;}
+  .btn-primary:hover{background:var(--dark-green);}
+  .btn-secondary{background:var(--surface);color:var(--text);border:1.5px solid var(--border);}
+  .btn-secondary:hover{border-color:var(--green);background:var(--bg);}
+  .btn:disabled{background:#EEF2EE;color:var(--muted);cursor:not-allowed;border-color:transparent;}
+
+  .spin{animation:spin 1s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* INTERMEDIARY PATIENT VERIFICATION STATE */
+  .patient-found{display:none;margin-bottom:24px;}
+  .patient-found.show{display:block;}
+  .verification-toast{background:var(--green);color:#fff;border-radius:10px;padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;animation:cardPop .25s ease;}
+  .patient-chip{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;animation:cardPop .3s ease;}
+  .patient-chip .avatar-wrapper{width:40px;height:40px;background:var(--light-green);color:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .patient-chip .info strong{display:block;font-size:14px;}
+  .patient-chip .info span{font-size:12px;color:var(--muted);}
+
+  /* SEVERITY MATRIX SELECTION CARDS */
+  .feeling-section{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px;margin-bottom:20px;text-align:center;animation:cardPop .35s cubic-bezier(0.16, 1, 0.3, 1) forwards;}
+  .feeling-section h2{font-size:20px;font-weight:700;margin-bottom:6px;}
+  .feeling-section p{color:var(--muted);font-size:13px;margin-bottom:28px;line-height:1.5;}
+  .feeling-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+  
+  .feel-btn{display:flex;flex-direction:column;align-items:center;gap:10px;padding:20px 24px;border:2px solid var(--border);border-radius:14px;cursor:pointer;transition:all .2s;background:var(--surface);flex:1;min-width:140px;}
+  .feel-btn:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 4px 16px rgba(0,0,0,.08);}
+  .feel-btn:disabled{cursor:not-allowed;opacity:.4;}
+  
+  .feel-btn .emoji-icon{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;}
+  .feel-btn .label{font-size:14px;font-weight:700;margin-top:2px;}
+  .feel-btn .sub{font-size:11px;color:var(--muted);}
+  
+  .feel-btn.fine{border-color:var(--green);}
+  .feel-btn.fine .emoji-icon{background:var(--light-green);color:var(--green);}
+  .feel-btn.fine:hover:not(:disabled){background:var(--light-green);}
+  
+  .feel-btn.mild{border-color:var(--gold);}
+  .feel-btn.mild .emoji-icon{background:var(--light-gold);color:var(--gold);}
+  .feel-btn.mild:hover:not(:disabled){background:var(--light-gold);}
+  
+  .feel-btn.severe{border-color:var(--red);}
+  .feel-btn.severe .emoji-icon{background:var(--light-red);color:var(--red);}
+  .feel-btn.severe:hover:not(:disabled){background:var(--light-red);}
+
+  /* CLINICAL DATA ANALYSIS RESULTS */
+  .result-card{display:none;border-radius:14px;padding:24px;margin-bottom:20px;animation:cardPop .3s ease;}
+  .result-card.show{display:block;}
+  .result-card.fine-result{background:var(--light-green);border:1px solid #C5E0D0;color:var(--dark-green);}
+  .result-card.mild-result{background:var(--light-gold);border:1px solid #E0C888;color:#7A4A00;}
+  .result-card.severe-result{background:var(--light-red);border:1px solid #E0B8B8;color:var(--red);}
+  
+  .result-header-block{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+  .result-title{font-size:18px;font-weight:700;}
+  .result-msg{font-size:14px;line-height:1.7;margin-bottom:16px;color:var(--text);}
+  
+  .education-box{background:rgba(255,255,255,.75);border-radius:8px;padding:14px;font-size:13px;line-height:1.7;margin-bottom:14px;color:var(--text);border:1px solid rgba(0,0,0,.03);}
+  .education-box strong{display:flex;align-items:center;gap:6px;margin-bottom:6px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);}
+  
+  .drs-change{display:flex;flex-direction:column;gap:6px;background:rgba(255,255,255,.6);padding:12px 16px;border-radius:10px;width:100%;color:var(--text);border:1px solid rgba(0,0,0,.02);}
+  .drs-label{font-size:12px;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);font-weight:700;}
+  .drs-flow{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;}
+  .drs-flow .arrow{font-size:14px;display:inline-flex;align-items:center;color:var(--muted);}
+
+  .warn{background:var(--light-gold);border:1px solid #E0C888;border-radius:10px;padding:14px 18px;font-size:13px;color:#7A4A00;display:none;margin-top:12px;line-height:1.6;animation:cardPop .2s ease;}
+
+  /* SYSTEM INFRASTRUCTURE ICON SCALING MAP */
+  .header i,
+  .back-link i,
+  .card h3 i,
+  .btn i,
+  .education-box strong i,
+  .result-header-block i,
+  .verification-toast i,
+  .drs-flow i {
+    width:18px;
+    height:18px;
+    stroke-width:2.25;
+    display:inline-block;
+    flex-shrink:0;
+  }
+  .patient-chip .avatar-wrapper i {
+    width:20px;
+    height:20px;
+    stroke-width:2;
+  }
+  .feel-btn .emoji-icon i {
+    width:26px;
+    height:26px;
+    stroke-width:2;
+  }

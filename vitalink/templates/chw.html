@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VitaLink · CHW Dispatch Priority Queue</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Shared sidebar styles -->
+  <link rel="stylesheet" href="/static/Css/VitaLinkSidebar.css">
+  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="/static/Css/chw.css">
+</head>
+<body>
+
+  <!-- Sidebar injected here by VitaLinkSidebar.js -->
+  <div id="vitalink-sidebar-target"></div>
+
+
+
+
+<div class="main">
+  <div class="topbar">
+    <div>
+      <h1>CHW Dispatch High Risk Patients</h1>
+      <p>Geolocated priority visit list · Tshwane District Hub</p>
+    </div>
+    <a href="/" style="font-size:13px; color:var(--green); text-decoration:none; font-weight:600; display:flex; align-items:center; gap:6px;">
+      <i data-lucide="arrow-left"></i><span>Back to Registry</span>
+    </a>
+  </div>
+  
+  <div class="content">
+    <div id="chw-header-area"></div>
+    
+    <div class="controls-bar">
+      <div class="filter-group">
+        <i data-lucide="sliders-horizontal"></i>
+        <label for="size-selector">Show Max:</label>
+        <select id="size-selector" class="select-input" onchange="updatePageSize(this.value)">
+          <option value="10" selected>10 Records per view</option>
+          <option value="25">25 Records per view</option>
+          <option value="50">50 Records per view</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <span class="pagination-info" id="pagination-label">Showing 0-0 of 0</span>
+        <div class="pagination-btns">
+          <button class="btn btn-secondary" style="padding: 6px 12px;" id="prev-btn" onclick="navigatePage(-1)" disabled><i data-lucide="chevron-left"></i></button>
+          <button class="btn btn-secondary" style="padding: 6px 12px;" id="next-btn" onclick="navigatePage(1)" disabled><i data-lucide="chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="zones-area">
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>Analyzing localized epidemiological risk matrices...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Shared sidebar logic -->
+  <script src="/static/Scripts/VitaLinkSidebar.js"></script>
+  <!-- Page-specific logic -->
+  <script src="/static/Scripts/chw.js"></script>
+</body>
+</html>

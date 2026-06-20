@@ -1,0 +1,146 @@
+/* pharmacy.css — pharmacy page styles */
+
+:root{--green:#1A7A4A;--dark-green:#0F5233;--light-green:#E8F5EE;--teal:#0D7E8C;--light-teal:#E3F4F6;--gold:#C07F2A;--light-gold:#FDF4E3;--red:#C0392B;--light-red:#FEF0EE;--bg:#F4F6F4;--surface:#FFFFFF;--border:#E0E8E4;--text:#1C2B22;--muted:#6B7F73;--sidebar-w:260px;}
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);display:flex;}
+
+  /* Sidebar, logo, nav, .main and .topbar shell now come from the shared
+     VitaLinkSidebar.css component — do not redefine them here. */
+
+  .content{padding:28px 32px;}
+
+
+
+  /* PHARMACY HEADER */
+
+  .pharma-header{background:linear-gradient(135deg,#0F5233,#1A7A4A);border-radius:12px;padding:24px;color:#fff;margin-bottom:24px;}
+
+  .pharma-header h2{font-size:20px;font-weight:700;margin-bottom:4px;}
+
+  .pharma-header p{font-size:13px;opacity:.8;}
+
+  .time-badge{display:inline-block;margin-top:12px;background:rgba(255,255,255,.15);padding:6px 16px;border-radius:20px;font-size:12px;font-weight:600;}
+
+
+
+  /* QR SCANNER DEMO */
+
+  .scanner-section{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:24px;}
+
+  .scanner-title{font-size:15px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+
+  .scanner-area{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;}
+
+  .qr-input-wrap{flex:1;min-width:260px;}
+
+  .qr-input-wrap label{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:8px;}
+
+  .qr-input{width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:8px;font-family:'DM Mono',monospace;font-size:15px;letter-spacing:2px;outline:none;transition:border .2s;text-transform:uppercase;}
+
+  .qr-input:focus{border-color:var(--green);}
+
+  .scan-btn{margin-top:10px;width:100%;padding:12px;background:var(--green);color:#fff;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;}
+
+  .scan-btn:hover{background:var(--dark-green);}
+
+  .scan-result{flex:1;min-width:260px;background:var(--bg);border-radius:10px;padding:16px;display:none;}
+
+  .scan-result.show{display:block;animation:fadeIn .3s ease;}
+
+  @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+  .result-name{font-size:18px;font-weight:700;margin-bottom:4px;}
+
+  .result-med{font-size:13px;color:var(--muted);margin-bottom:12px;}
+
+  .dispense-btn{width:100%;padding:12px;background:#25D366;color:#fff;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;}
+
+  .dispense-btn:hover{background:#128C7E;}
+
+  .dispense-btn.dispensed{background:var(--light-green);color:var(--dark-green);cursor:default;}
+
+
+
+  /* QUEUE TABLE */
+
+  .table-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:24px;}
+
+  .table-header-bar{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+
+  .table-title{font-size:14px;font-weight:700;}
+
+  table{width:100%;border-collapse:collapse;}
+
+  thead th{padding:10px 16px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);background:#FAFBFA;border-bottom:1px solid var(--border);}
+
+  tbody tr{border-bottom:1px solid #F0F4F2;transition:background .15s;}
+
+  tbody tr:hover{background:#F6FAF7;}
+
+  tbody tr:last-child{border-bottom:none;}
+
+  td{padding:13px 16px;font-size:13px;vertical-align:middle;}
+
+  .status-badge{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;}
+
+  .status-ready{background:var(--light-green);color:var(--dark-green);}
+
+  .status-pending{background:var(--light-gold);color:var(--gold);}
+
+  .status-dispensed{background:#F0F4F2;color:var(--muted);}
+
+  .qr-mono{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);}
+
+  .prep-btn{padding:5px 12px;border-radius:6px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;background:var(--light-teal);color:var(--teal);transition:all .2s;}
+
+  .prep-btn:hover{background:var(--teal);color:#fff;}
+
+  .prep-btn.done{background:#F0F4F2;color:var(--muted);cursor:default;}
+
+  .date-urgent{color:var(--red);font-weight:700;}
+
+  .date-soon{color:var(--gold);font-weight:700;}
+
+  .date-normal{color:var(--text);}
+
+
+
+  .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;}
+
+  .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;}
+
+  .stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;}
+
+  .stat-value{font-size:32px;font-weight:700;margin:6px 0 2px;font-family:'DM Mono',monospace;}
+
+  .stat-sub{font-size:11px;color:var(--muted);}
+
+
+
+  .loading{text-align:center;padding:40px;color:var(--muted);}
+
+  .spinner{width:28px;height:28px;border:3px solid var(--border);border-top-color:var(--green);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 10px;}
+
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .nav-item i {
+
+  width: 18px;
+
+  height: 18px;
+
+}
+
+
+.scanner-title,.time-badge,.scan-btn,.dispense-btn,.table-title,.status-badge{display:flex;align-items:center;gap:8px;}
+.scan-btn i,.dispense-btn i,.time-badge i,.status-badge i{width:16px;height:16px;}
+.scanner-title i{width:20px;height:20px;color:var(--green);}
+
+
+.pill-title{display:flex;align-items:center;gap:10px;}
+.pill-title i{width:24px;height:24px;flex-shrink:0;vertical-align:middle;}
+.filters{display:flex;gap:10px;flex-wrap:wrap;padding:16px 20px;border-bottom:1px solid var(--border);background:#fafbfa;}
+.filter-btn{padding:8px 14px;border:1px solid var(--border);background:#fff;border-radius:999px;cursor:pointer;font-weight:600;font-size:12px;}
+.filter-btn.active,.filter-btn:hover{background:var(--green);color:#fff;}

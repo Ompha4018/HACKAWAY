@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VitaLink · Patient Health Check-in</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Page-specific styles (standalone patient-facing page, no sidebar) -->
+  <link rel="stylesheet" href="/static/Css/checkin.css">
+</head>
+<body>
+
+
+<div class="header">
+  <div class="header-logo">Vita<span>Link</span></div>
+  <a href="/" class="back-link">
+    <i data-lucide="layout-dashboard"></i>
+    <span>Clinic Portal</span>
+  </a>
+</div>
+
+<div class="content">
+  <div class="greeting">
+    <h1>How Are You Feeling Today?</h1>
+    <p>This takes 10 seconds. Your response helps your healthcare team check in on you and keeps you safely on track with your treatment.</p>
+  </div>
+
+  <div class="card" id="lookup-panel">
+    <h3><i data-lucide="search"></i>Enter Your VitaLink ID or Phone Number</h3>
+    <div class="lookup-row">
+      <input class="lookup-input" id="lookup-val" placeholder="e.g. VTL-0001 or 0721234567" onkeydown="if(event.key==='Enter')lookupPatient()">
+      <button class="btn btn-primary" id="lookup-btn" onclick="lookupPatient()">
+        <span>Find Me</span>
+      </button>
+    </div>
+    <div class="warn" id="warn-notfound">
+      We couldn't find your record.<br><br>
+      Please check your VitaLink ID or cellphone number and try again. If the problem continues, ask a clinic staff member for assistance.
+    </div>
+
+    <div class="btn-row" style="margin-top:16px; justify-content:center;">
+      <button class="btn btn-secondary" onclick="demoLoad()">
+        <i data-lucide="user-check"></i>
+        <span>Load Demo Patient</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="patient-found" id="patient-found">
+    <div class="verification-toast">
+      <i data-lucide="shield-check"></i>
+      <span>Patient verified successfully</span>
+    </div>
+    <div class="patient-chip">
+      <div class="avatar-wrapper">
+        <i data-lucide="user-round"></i>
+      </div>
+      <div class="info">
+        <strong id="p-name">—</strong>
+        <span id="p-detail">—</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="feeling-section" id="feeling-section" style="display:none">
+    <h2>How are you feeling today?</h2>
+    <p>Be honest—your response is private and goes directly to your care team. No one else sees it.</p>
+    <div class="feeling-btns">
+      <button class="feel-btn fine" onclick="submitCheckin('fine')" aria-label="Feeling fine">
+        <div class="emoji-icon"><i data-lucide="smile"></i></div>
+        <span class="label">Fine</span>
+        <span class="sub">Feeling well</span>
+      </button>
+      <button class="feel-btn mild" onclick="submitCheckin('mild')" aria-label="Mild symptoms">
+        <div class="emoji-icon"><i data-lucide="meh"></i></div>
+        <span class="label">Mild symptoms</span>
+        <span class="sub">Some discomfort</span>
+      </button>
+      <button class="feel-btn severe" onclick="submitCheckin('severe')" aria-label="Very unwell">
+        <div class="emoji-icon"><i data-lucide="frown"></i></div>
+        <span class="label">Very unwell</span>
+        <span class="sub">Severe symptoms</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="result-card" id="result-card">
+    <div class="result-header-block">
+      <i id="r-icon" data-lucide="smile"></i>
+      <div class="result-title" id="r-title">—</div>
+    </div>
+    <div class="result-msg" id="r-msg">—</div>
+    <div class="education-box" id="r-edu">—</div>
+    <div class="drs-change" id="r-drs" style="margin-bottom:20px"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="location.href='/book'">
+        <i data-lucide="calendar"></i>
+        <span>Book a Follow-Up</span>
+      </button>
+      <button class="btn btn-secondary" onclick="resetCheckin()">Start New Check-in</button>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Page-specific logic -->
+  <script src="/static/Scripts/checkin.js"></script>
+</body>
+</html>
